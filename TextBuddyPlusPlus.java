@@ -4,7 +4,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class TextBuddyPlusPlus {
   
@@ -16,7 +15,6 @@ public class TextBuddyPlusPlus {
   private static final String MESSAGE_EMPTY = "%s is empty\n";
   private static final String MESSAGE_DISPLAY = "%d. %s\n";
   private static final String MESSAGE_WELCOME = "Welcome to TextBuddy. %s is ready for use\n";
-  private static final String MESSAGE_SORT = "%s has been sorted\n";
   
   private static final String FILENAME = "mytextfile";
   
@@ -63,11 +61,11 @@ public class TextBuddyPlusPlus {
     while (true) {
       
       try {
-        // Save the first input as the command and the second input as the parameter
-        String[] cmd = in.readLine().trim().split(" ", 2);
+        //read in the string input by user
+        String userCommand = in.readLine();
         
-        // Check for command according to the list of possible command types
-        executeCommand(cmd);
+        // parses the string into a function that determines the command to be done
+        executeCommand(userCommand);
         
       } catch (Exception e) {
         print(MESSAGE_INVALID_FORMAT);
@@ -75,7 +73,11 @@ public class TextBuddyPlusPlus {
     }
   }
   
-  public void executeCommand(String[] cmd) {
+  public void executeCommand(String userCommand) {
+    // Save the first input as the command and the second input as the parameter
+    String[] cmd = userCommand.trim().split(" ", 2);
+    
+    // Check for command according to the list of possible command types    
     switch (COMMANDS.valueOf(cmd[0].toUpperCase())) {
       
       case DISPLAY :
@@ -83,7 +85,7 @@ public class TextBuddyPlusPlus {
         break;
         
       case ADD :
-        print(add(cmd[1]));
+        print(addAndWriteToFile(cmd[1]));
         break;
         
       case DELETE :
