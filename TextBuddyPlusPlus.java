@@ -146,7 +146,7 @@ public class TextBuddyPlusPlus {
    * 
    * @return "item added" message
    */
-  public String add(String item) {
+  public String addAndWriteToFile(String item) {
     list.add(item);
     writeToFile();
     return String.format(MESSAGE_ADDED, fileName, item);
