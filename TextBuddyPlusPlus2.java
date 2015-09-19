@@ -22,7 +22,7 @@ public class TextBuddyPlusPlus {
   
   // These are the possible command types
   enum COMMANDS {
-    DISPLAY, ADD, DELETE, CLEAR, EXIT
+    DISPLAY, ADD, DELETE, CLEAR, SORT, SEARCH, EXIT
   };
   
   // Filename of output text file
@@ -92,6 +92,14 @@ public class TextBuddyPlusPlus {
         
       case CLEAR :
         print(clear());
+        break;
+        
+      case SORT :
+        print(sort());
+        break;
+        
+      case SEARCH :
+        print(search(cmd[1]));
         break;
         
       case EXIT :
@@ -186,6 +194,23 @@ public class TextBuddyPlusPlus {
     list.clear();
     writeToFile();
     return String.format(MESSAGE_CLEAR, fileName);
+  }
+  
+  public String sort(){
+    Collections.sort(list);
+    writeToFile();
+    return String.format(MESSAGE_SORT, fileName);
+  }
+  
+  public String search(String keyword){
+    StringBuffer output = new StringBuffer();
+    for(int i=0; i < list.size(); i++){
+      if (list.get(i).contains(keyword)){
+        output.append(list.get(i));
+        output.append("\n");
+      }
+    }
+    return output.toString();
   }
   
   private void print(String str){

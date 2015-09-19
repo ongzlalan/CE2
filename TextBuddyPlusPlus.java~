@@ -22,7 +22,7 @@ public class TextBuddyPlusPlus {
   
   // These are the possible command types
   enum COMMANDS {
-    DISPLAY, ADD, DELETE, CLEAR, EXIT
+    DISPLAY, ADD, DELETE, CLEAR, EXIT, SORT, SEARCH
   };
   
   // Filename of output text file
@@ -34,15 +34,16 @@ public class TextBuddyPlusPlus {
   private final BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
   
   public static void main(String[] args) {
-    TextBuddyPlusPlus textBuddyPlusPlus;
-    
-    if (args.length == 0) {
-      textBuddyPlusPlus = new TextBuddyPlusPlus();
-    } else {
-      textBuddyPlusPlus = new TextBuddyPlusPlus(args[0]);
+	  TextBuddyPlusPlus textBuddyPlusPlus;
+
+	  if (args.length == 0){
+	  textBuddyPlusPlus = new TextBuddyPlusPlus();
     }
+	  else{
+		  textBuddyPlusPlus = new TextBuddyPlusPlus(args[0]);
+	  }
     
-    textBuddyPlusPlus.run();
+	textBuddyPlusPlus.run();
   }
   
   public TextBuddyPlusPlus() {
@@ -51,10 +52,10 @@ public class TextBuddyPlusPlus {
   }
   
   public TextBuddyPlusPlus(String args) {
-    fileName = args.concat(".txt");
-    print(String.format(MESSAGE_WELCOME, fileName));
-  }
-  
+     fileName = args.concat(".txt");
+     print(String.format(MESSAGE_WELCOME, fileName));
+   }
+ 
   /**
    * Bulk of program. Program will terminate on exit command.
    */
@@ -74,34 +75,42 @@ public class TextBuddyPlusPlus {
       }
     }
   }
-  
-  public void executeCommand(String[] cmd) {
-    switch (COMMANDS.valueOf(cmd[0].toUpperCase())) {
-      
-      case DISPLAY :
-        print(display());
-        break;
-        
-      case ADD :
-        print(add(cmd[1]));
-        break;
-        
-      case DELETE :
-        print(delete(cmd[1]));
-        break;
-        
-      case CLEAR :
-        print(clear());
-        break;
-        
-      case EXIT :
-        System.exit(0);
-        break;
-        
-      default:
-        print(MESSAGE_INVALID_FORMAT);
-    }
-  }
+
+public void executeCommand(String[] cmd) {
+	switch (COMMANDS.valueOf(cmd[0].toUpperCase())) {
+	  
+	  case DISPLAY :
+	    print(display());
+	    break;
+	    
+	  case ADD :
+	    print(add(cmd[1]));
+	    break;
+	    
+	  case DELETE :
+	    print(delete(cmd[1]));
+	    break;
+	    
+	  case CLEAR :
+	    print(clear());
+	    break;
+	    
+	  case EXIT :
+	    System.exit(0);
+	    break;
+	    
+	  case SORT :
+	 print(sort());
+	 break;
+	 
+	  case SEARCH :
+	   print(search(cmd[1]));
+	   break;
+	    
+	  default:
+	    print(MESSAGE_INVALID_FORMAT);
+	}
+}
   
   /**
    * Writes the list to the file.
@@ -188,6 +197,23 @@ public class TextBuddyPlusPlus {
     return String.format(MESSAGE_CLEAR, fileName);
   }
   
+  public String sort(){
+   Collections.sort(list);
+   writeToFile();
+   return String.format(MESSAGE_SORT, fileName);
+  }
+  
+  public String search(String keyword){
+   StringBuffer output = new StringBuffer();
+   for(int i=0; i < list.size(); i++){
+    if (list.get(i).contains(keyword)){
+     output.append(list.get(i));
+     output.append("\n");
+    }
+   }
+   return output.toString();
+  }
+   
   private void print(String str){
     System.out.print(str);
   }
