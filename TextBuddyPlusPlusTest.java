@@ -2,6 +2,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 public class TextBuddyPlusPlusTest {
 
  TextBuddyPlusPlus tester = new TextBuddyPlusPlus("mytestfile");
@@ -20,6 +22,14 @@ public class TextBuddyPlusPlusTest {
   // check that the items have been added properly to the list
   assertEquals("1. g\n2. 9\n3. a\n4. 3\n", tester.display());
   
+  /** Expected output of the sorted list: 3, 9, a, g
+   * 
+   *  check that the list is not sorted
+   */
+  assertNotEquals("1. 3\n2. 9\n 3. a\n 4. g\n", tester.display());
+  
+  
+
  }
  
  }
