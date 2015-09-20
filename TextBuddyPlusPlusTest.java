@@ -66,6 +66,10 @@ public class TextBuddyPlusPlusTest {
 		
 		  // check fox keyword
 		  assertEquals("little brown fox\nbig black fox\n", tester.search("fox"));
+		  
+		  // check box keyword
+		  assertEquals("big brown box\nlittle black box\n", tester.search("box"));
+		  
  }
  
  }
