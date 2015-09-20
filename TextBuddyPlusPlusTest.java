@@ -15,6 +15,7 @@ public class TextBuddyPlusPlusTest {
   // check intial file is empty
   assertEquals("mytestfile.txt is empty\n", tester.display());
 	 
+  // adding of test case items to the list
   tester.addAndWriteToFile("g");
   tester.addAndWriteToFile("9");
   tester.addAndWriteToFile("a");
@@ -45,6 +46,7 @@ public class TextBuddyPlusPlusTest {
 	  // check intial file is empty
 	  assertEquals("mytestfile.txt is empty\n", tester.display());
 	  
+	  
 	  tester.addAndWriteToFile("little 1");
 	  tester.addAndWriteToFile("litle 1");
 	  tester.addAndWriteToFile("little brown fox");
@@ -56,7 +58,9 @@ public class TextBuddyPlusPlusTest {
 	  assertEquals("1. little 1\n2. litle 1\n3. little brown fox\n"
 	  		+ "4. big black fox\n5. big brown box\n6. little black box\n", tester.display());
 	  
-	  
+	// check that blah keyword is not found
+		  assertEquals("blah not found in mytestfile.txt\n", tester.search("blah"));
+		  
 
 	 
  }

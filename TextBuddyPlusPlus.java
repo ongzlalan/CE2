@@ -17,6 +17,8 @@ public class TextBuddyPlusPlus {
   private static final String MESSAGE_DISPLAY = "%d. %s\n";
   private static final String MESSAGE_WELCOME = "Welcome to TextBuddy. %s is ready for use\n";
   private static final String MESSAGE_SORT = "%s has been sorted\n";
+  private static final String MESSAGE_NOT_FOUND = "%s not found in %s\n";
+
   
   private static final String FILENAME = "mytextfile";
   
@@ -205,6 +207,25 @@ public class TextBuddyPlusPlus {
 	    return String.format(MESSAGE_SORT, fileName);
 	  }
   
+  public String search(String keyword){
+	  
+	  StringBuffer output = new StringBuffer();
+	  
+	  // iterate through all the elements to look for the keyword
+	  for(int i=0; i < list.size(); i++){
+	      if (list.get(i).contains(keyword)){
+	        output.append(list.get(i));
+	        output.append("\n");
+	      }
+	    }
+	  
+	  // message if keyword is not found in the list
+	  if(output.length() == 0){
+		  output.append(String.format(MESSAGE_NOT_FOUND, keyword, fileName));
+	  }
+	  
+	  return output.toString();
+  }
   private void print(String str){
     System.out.print(str);
   }
