@@ -4,10 +4,13 @@ import org.junit.Test;
 
 public class TextBuddyPlusPlusTest {
 
- TextBuddyPlusPlus tester = new TextBuddyPlusPlus("mytestfile");
+ TextBuddyPlusPlus tester;
  
  @Test
  public void testSort() {
+  
+  // initialise new textbuddy++
+  tester = new TextBuddyPlusPlus("mytestfile");
   
   // check intial file is empty
   assertEquals("mytestfile.txt is empty\n", tester.display());
@@ -31,7 +34,31 @@ public class TextBuddyPlusPlusTest {
   // check that the output is same as expected output
   assertEquals("1. 3\n2. 9\n3. a\n4. g\n", tester.display());
   
+ }
+ 
+ @Test
+ public void testSearch(){
+	 
+	  // initialise new textbuddy++
+	  tester = new TextBuddyPlusPlus("mytestfile");
+	  
+	  // check intial file is empty
+	  assertEquals("mytestfile.txt is empty\n", tester.display());
+	  
+	  tester.addAndWriteToFile("little 1");
+	  tester.addAndWriteToFile("litle 1");
+	  tester.addAndWriteToFile("little brown fox");
+	  tester.addAndWriteToFile("big black fox");
+	  tester.addAndWriteToFile("big brown box");
+	  tester.addAndWriteToFile("little black box");
 
+	  // check that the items have been added properly to the list
+	  assertEquals("1. little 1\n2. litle 1\n3. little brown fox\n"
+	  		+ "4. big black fox\n5. big brown box\n6. little black box\n", tester.display());
+	  
+	  
+
+	 
  }
  
  }
