@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class TextBuddyPlusPlus {
   
@@ -197,6 +198,12 @@ public class TextBuddyPlusPlus {
     writeToFile();
     return String.format(MESSAGE_CLEAR, fileName);
   }
+  
+  public String sort(){
+	    Collections.sort(list);
+	    writeToFile();
+	    return String.format(MESSAGE_SORT, fileName);
+	  }
   
   private void print(String str){
     System.out.print(str);
