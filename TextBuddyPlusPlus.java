@@ -15,12 +15,13 @@ public class TextBuddyPlusPlus {
   private static final String MESSAGE_EMPTY = "%s is empty\n";
   private static final String MESSAGE_DISPLAY = "%d. %s\n";
   private static final String MESSAGE_WELCOME = "Welcome to TextBuddy. %s is ready for use\n";
+  private static final String MESSAGE_SORT = "%s has been sorted\n";
   
   private static final String FILENAME = "mytextfile";
   
   // These are the possible command types
   enum COMMANDS {
-    DISPLAY, ADD, DELETE, CLEAR, EXIT
+    DISPLAY, ADD, DELETE, CLEAR, SORT, EXIT
   };
   
   // Filename of output text file
@@ -34,6 +35,9 @@ public class TextBuddyPlusPlus {
   public static void main(String[] args) {
     TextBuddyPlusPlus textBuddyPlusPlus;
     
+    /** if file name stated by user, follows what user input
+      * else name is mytextfile.txt
+      */
     if (args.length == 0) {
       textBuddyPlusPlus = new TextBuddyPlusPlus();
     } else {
@@ -61,7 +65,7 @@ public class TextBuddyPlusPlus {
     while (true) {
       
       try {
-        //read in the string input by user
+        // read in the string input by user
         String userCommand = in.readLine();
         
         // parses the string into a function that determines the command to be done
@@ -95,6 +99,10 @@ public class TextBuddyPlusPlus {
       case CLEAR :
         print(clear());
         break;
+        
+      case SORT :
+          print(sort());
+          break;
         
       case EXIT :
         System.exit(0);
