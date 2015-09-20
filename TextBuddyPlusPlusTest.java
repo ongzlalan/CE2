@@ -61,7 +61,8 @@ public class TextBuddyPlusPlusTest {
 	// check that blah keyword is not found
 		  assertEquals("blah not found in mytestfile.txt\n", tester.search("blah"));
 		  
-
+		  // check little keyword 
+		  assertEquals("little 1\nlittle brown fox\nlittle black box\n", tester.search("little"));
 	 
  }
  
